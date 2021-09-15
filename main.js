@@ -38,13 +38,34 @@ const students = [
     score2: 45,
   },
 ];
-console.log(students);
 
 // 2.
 const degrees = ['A', 'B', 'C', 'D', 'E'];
 const passingLimit = [91, 81, 71, 61, 51];
 
-// 3. 4.
+// 3. 4. 5.
+// === second approach ===
+const calcTotalScore = function (score1, score2) {
+  const totalScore = score1 + score2;
+  return totalScore;
+};
+
+for (let i = 0; i < students.length; i++) {
+  const eachTotalScore = calcTotalScore(students[i].score1, students[i].score2);
+  students[i].totalScore = eachTotalScore;
+
+  if (students[i].totalScore > passingLimit[i]) {
+    students[i].degree = degrees[i];
+  } else {
+    students[i].degree = 'N/A';
+  }
+
+  console.log(`${students[i].name}'s total score is ${students[i].totalScore}, and his degree is ${students[i].degree}.`)
+}
+console.log(students);
+
+
+/* === first aproach ===
 const calcTotalScore = function () {
   for (let i = 0; i < students.length; i++) {
     const totalScore = students[i].score1 + students[i].score2;
@@ -67,3 +88,4 @@ const calcTotalScore = function () {
   }
 };
 calcTotalScore();
+*/
