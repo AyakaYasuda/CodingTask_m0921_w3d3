@@ -39,6 +39,7 @@ const students = [
   },
 ];
 
+
 // 2.
 const degrees = ['A', 'B', 'C', 'D', 'E'];
 const passingLimit = [91, 81, 71, 61, 51];
@@ -55,6 +56,14 @@ for (let i = 0; i < students.length; i++) {
   students[i].totalScore = totalScore;
 }
 console.log(students);
+
+// reform array by using map just for fun
+const newStudentsArray = students.map(item => {
+  let rItem = {};
+  rItem[item.name] = item.totalScore;
+  return rItem;
+});
+console.log(newStudentsArray);
 
 // 4.
 const getDegree = function (totalScore) {
