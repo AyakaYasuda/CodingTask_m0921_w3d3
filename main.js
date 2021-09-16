@@ -43,7 +43,7 @@ const students = [
 const degrees = ['A', 'B', 'C', 'D', 'E'];
 const passingLimit = [91, 81, 71, 61, 51];
 
-// 3. 4. 5.
+// 3.
 // === second approach ===
 const calcTotalScore = function (score1, score2) {
   const totalScore = score1 + score2;
@@ -51,21 +51,35 @@ const calcTotalScore = function (score1, score2) {
 };
 
 for (let i = 0; i < students.length; i++) {
-  const eachTotalScore = calcTotalScore(students[i].score1, students[i].score2);
-  students[i].totalScore = eachTotalScore;
-
-  if (students[i].totalScore > passingLimit[i]) {
-    students[i].degree = degrees[i];
-  } else {
-    students[i].degree = 'N/A';
-  }
-
-  console.log(`${students[i].name}'s total score is ${students[i].totalScore}, and his degree is ${students[i].degree}.`)
+  const totalScore = calcTotalScore(students[i].score1, students[i].score2);
+  students[i].totalScore = totalScore;
 }
 console.log(students);
 
+// 4.
+const getDegree = function (totalScore) {
+  for (let x = 0; x < passingLimit.length; x++) {
+    let degree = '';
+    if (totalScore >= passingLimit[x]) {
+      degree = degrees[x];
+      return degree;
+    }
+  }
+};
+// console.log(getDegree(students[3].totalScore));
+// console.log(getDegree(students[1].totalScore));
 
-/* === first aproach ===
+// 5.
+for (let i = 0; i < students.length; i++) {
+  students[i].degree = getDegree(students[i].totalScore);
+  if (!students[i].degree) {
+    students[i].degree = 'no degree';
+  }
+}
+console.log(students);
+
+/* === first aproach === */
+/*
 const calcTotalScore = function () {
   for (let i = 0; i < students.length; i++) {
     const totalScore = students[i].score1 + students[i].score2;
